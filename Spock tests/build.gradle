@@ -1,0 +1,33 @@
+group 'Sample project'
+description = "Sample project for API testing using Spock"
+version '1.0-SNAPSHOT'
+
+apply plugin: 'groovy'
+apply plugin: 'java'
+
+sourceCompatibility = 1.5
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+//    testRuntime "com.h2database:h2:1.4.182"
+    compile group: 'org.apache.poi', name: 'poi-ooxml', version: '3.9'
+
+    // mandatory dependencies for using Spock
+    // https://mvnrepository.com/artifact/mysql/mysql-connector-java
+    // Using for delete service with body
+    compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.3'
+    compile "org.codehaus.groovy:groovy-all:2.4.1"
+    compile group: 'org.postgresql', name: 'postgresql', version: '9.4-1200-jdbc41'
+    testCompile "org.spockframework:spock-core:1.0-groovy-2.4"
+    testCompile 'org.codehaus.groovy.modules.http-builder:http-builder:0.7.1'
+    compile "commons-beanutils:commons-beanutils:1.9.2"
+    compile 'com.google.code.gson:gson:2.8.2'
+
+    // optional dependencies for using Spock
+    // testCompile "org.hamcrest:hamcre-core:1.3" // only necessary if Hamcrest 9.1-901.jdbc4matchers are used
+    testRuntime "cglib:cglib-nodep:3.1"          // allows mocking of classes (in addition to interfaces)
+
+}
